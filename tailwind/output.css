@@ -205,6 +205,10 @@
   syntax: "*";
   inherits: false;
 }
+
+
+
+
 @property --tw-blur {
   syntax: "*";
   inherits: false;

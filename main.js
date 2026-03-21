@@ -5,7 +5,7 @@ console.log("main.js loaded");
 import { renderNavbar } from "./components/navbar.js";
 import { renderHome } from "./modules/home.js";
 import { renderHisLife } from "./modules/hisLife.js";
-import { renderHisWritings } from "./modules/hiswritings.js";
+import { renderHisWritings } from "./modules/hisWritings.js";
 import { renderHisCreations } from "./modules/hisCreations.js";
 import { renderHisStudy } from "./modules/hisStudy.js";
 import { renderPopularCulture } from "./modules/popularCulture.js";
@@ -14,11 +14,24 @@ import { handleCategoryClick } from "./modules/writingsIndex.js";
 
 const app = document.getElementById("app");
 
-document.body.classList.add("bg-black", "text-gray-100");
+// Base body styling
+document.body.classList.add("bg-black", "text-gray-100", "min-h-screen");
 
 // 🔁 Main page renderer
 function render(page) {
   let content = "";
+
+  // 🌌 Handle background (ONLY for home)
+  if (page === "home") {
+    document.body.style.backgroundImage = "url('assets/images/Miskatonic homepage.png')";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundAttachment = "fixed"; // optional: subtle parallax feel
+  } else {
+    // Remove background on other pages
+    document.body.style.backgroundImage = "none";
+  }
 
   switch (page) {
     case "hisLife":
@@ -46,15 +59,15 @@ function render(page) {
   app.innerHTML = renderNavbar() + content;
 }
 
-// 🖱️ Global click handler (navigation + categories)
+
 document.addEventListener("click", (e) => {
-  // Page navigation
+
   if (e.target.dataset.page) {
     e.preventDefault();
     render(e.target.dataset.page);
   }
 
-  // Writings category selection
+
   if (e.target.dataset.category) {
     e.preventDefault();
 
