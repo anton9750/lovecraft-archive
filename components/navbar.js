@@ -1,8 +1,21 @@
+// components/navbar.js
 export function renderNavbar() {
   return `
     <nav class="bg-gray-900 text-yellow-300 font-serif shadow-md w-full">
+      <style>
+        @keyframes hueCycle {
+          0%   { color: #facc15; } /* yellow */
+          33%  { color: #22c55e; } /* green */
+          66%  { color: #ef4444; } /* red */
+          100% { color: #facc15; } /* back to yellow */
+        }
+        .animate-hueCycle {
+          animation: hueCycle 3s infinite;
+        }
+      </style>
+
       <div class="mx-auto px-6 py-3 flex items-center justify-between max-w-7xl">
-        <div class="text-xl font-bold hover:text-yellow-500 transition-colors duration-300">
+        <div class="text-xl font-bold animate-hueCycle transition-transform duration-500 transform hover:scale-105">
           H.P. Lovecraft Archive
         </div>
         
@@ -15,8 +28,6 @@ export function renderNavbar() {
           <li><a href="#" data-page="popularCulture" class="hover:text-yellow-500 transition-colors duration-300">Popular Culture</a></li>
           <li><a href="#" data-page="aboutThisSite" class="hover:text-yellow-500 transition-colors duration-300">About</a></li>
         </ul>
-
-        <!-- You can add mobile menu button here later -->
       </div>
     </nav>
   `;
