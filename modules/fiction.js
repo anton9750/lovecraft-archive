@@ -12,7 +12,7 @@ export function renderFiction() {
           .map(
             (title) => `
           <a 
-            href="/works/${encodeURIComponent(title)}" 
+            href="story.html?category=fiction&title=${encodeURIComponent(title)}"
             class="block p-3 rounded-lg bg-gray-900 text-gray-200 hover:bg-yellow-800 hover:text-black transition-all duration-300 shadow-lg"
           >
             ${title}

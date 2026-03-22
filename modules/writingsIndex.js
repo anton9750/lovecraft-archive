@@ -1,67 +1,60 @@
-import { writingsData } from "../data/writingsData.js";
-import { renderFiction } from "./fiction.js";
-import { renderPoetry } from "./poetry.js";
-import { renderLetters } from "./letters.js";
-import { renderAmateur } from "./amateur.js";
-import { renderCriticism } from "./criticism.js";
-import { renderScience } from "./science.js";
-import { renderTravel } from "./travel.js";
-import { renderPhilosophy } from "./philosophy.js";
-import { renderAutobiographical } from "./autobiographical.js";
-import { renderQuotations } from "./quotations.js";
-import { renderDrawings } from "./drawings.js";
-import { renderReadings } from "./readings.js";
-import { renderCollaborations } from "./collaborations.js";
-import { renderFavorites } from "./favorites.js";
+// writingsIndex.js
+import { stories } from "../data/stories.js";
 
+// List of categories you want to show in the index
+const categories = Object.keys(stories);
+
+/**
+ * Render the main writings index with clickable categories
+ */
 export function renderWritingsIndex() {
   return `
     <div class="writings">
-      <ul>
-        ${Object.keys(writingsData)
+      <ul class="mb-4">
+        ${categories
           .map(
             (category) =>
-              `<li><a href="#" data-category="${category}">${category}</a></li>`
+              `<li>
+                 <a href="#" data-category="${category}" 
+                    class="text-yellow-300 hover:underline capitalize">
+                   ${category}
+                 </a>
+               </li>`
           )
           .join("")}
       </ul>
 
+      <!-- Container for category items -->
       <div id="categoryContent"></div>
     </div>
   `;
 }
 
+/**
+ * Handle clicks on categories in the index
+ * Returns HTML for the list of items in that category
+ */
 export function handleCategoryClick(category) {
-  switch (category) {
-    case "fiction":
-      return renderFiction();
-    case "poetry":
-      return renderPoetry();
-    case "letters":
-      return renderLetters();
-    case "amateur":
-      return renderAmateur();
-    case "criticism":
-      return renderCriticism();
-    case "science":
-      return renderScience();
-    case "travel":
-      return renderTravel();
-    case "philosophy":
-      return renderPhilosophy();
-    case "autobiographical":
-      return renderAutobiographical();
-    case "quotations":
-      return renderQuotations();
-    case "drawings":
-      return renderDrawings();
-    case "readings":
-      return renderReadings();
-    case "collaborations":
-      return renderCollaborations();
-    case "favorites":
-      return renderFavorites();
-    default:
-      return "<p>Select a category</p>";
-  }
+  if (!stories[category]) return "<p>No stories found for this category.</p>";
+
+  const items = Object.keys(stories[category]);
+
+  return `
+    <ul>
+      ${items
+        .map(
+          (title) => `
+            <li>
+              <a href="story.html?category=${category}&title=${encodeURIComponent(
+            title
+          )}"
+                 class="hover:text-yellow-300 transition">
+                ${title}
+              </a>
+            </li>
+          `
+        )
+        .join("")}
+    </ul>
+  `;
 }

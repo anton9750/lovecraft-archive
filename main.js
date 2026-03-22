@@ -1,3 +1,4 @@
+// main.js
 import './tailwind/input.css';
 
 console.log("main.js loaded");
@@ -21,15 +22,14 @@ document.body.classList.add("bg-black", "text-gray-100", "min-h-screen");
 function render(page) {
   let content = "";
 
-  // 🌌 Handle background (ONLY for home)
+  // Background handling
   if (page === "home") {
     document.body.style.backgroundImage = "url('assets/images/Miskatonic homepage.png')";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundAttachment = "fixed"; // optional: subtle parallax feel
+    document.body.style.backgroundAttachment = "fixed";
   } else {
-    // Remove background on other pages
     document.body.style.backgroundImage = "none";
   }
 
@@ -59,24 +59,27 @@ function render(page) {
   app.innerHTML = renderNavbar() + content;
 }
 
-
+// 🧠 Smart click handler
 document.addEventListener("click", (e) => {
+  const link = e.target.closest("a");
 
+  // 🚪 Allow normal navigation for all story.html links (fiction, poetry, essays, letters)
+  if (link && link.getAttribute("href")?.includes("story.html")) {
+    return; // Let browser navigate normally
+  }
+
+  // SPA navigation (navbar etc.)
   if (e.target.dataset.page) {
     e.preventDefault();
     render(e.target.dataset.page);
   }
 
-
+  // Category clicks (fiction, poetry, essays, letters, etc.)
   if (e.target.dataset.category) {
     e.preventDefault();
-
     const content = handleCategoryClick(e.target.dataset.category);
-
     const container = document.getElementById("categoryContent");
-    if (container) {
-      container.innerHTML = content;
-    }
+    if (container) container.innerHTML = content;
   }
 });
 

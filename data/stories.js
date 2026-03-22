@@ -13,10 +13,8 @@ But since those glorious years all is changed. A poverty but little above the le
 It was in one of the vast and gloomy chambers of this remaining tower that I, Antoine, last of the unhappy and accursed Comtes de C——, first saw the light of day, ninety long years ago. Within these walls, and amongst the dark and shadowy forests, the wild ravines and grottoes of the hillside below, were spent the first years of my troubled life. My parents I never knew...
       </p>
     `
-    // You can add more fiction stories here, e.g., "Ashes": `...`
   },
   poetry: {
-    // Example structure
     "An American to Mother England": `
       <p class="text-gray-200 leading-relaxed whitespace-pre-line">
       [Full poem text here]
@@ -27,6 +25,18 @@ It was in one of the vast and gloomy chambers of this remaining tower that I, An
     "Letter to the Gallomo": `
       <p class="text-gray-200 leading-relaxed whitespace-pre-line">
       [Full letter text here]
+      </p>
+    `
+  },
+  essays: {
+    "Supernatural Horror in Literature": `
+      <p class="text-gray-200 leading-relaxed whitespace-pre-line">
+Supernatural Horror in Literature
+By H. P. Lovecraft
+
+The oldest and strongest emotion of mankind is fear, and the oldest and strongest kind of fear is fear of the unknown. When writers seek to evoke terror, it is often this primal fear that they manipulate most effectively. The human imagination, with its insatiable curiosity and restless intellect, is particularly susceptible to dread when confronted with phenomena beyond its comprehension. 
+
+In my own reflections upon supernatural horror, I have always held that the truly chilling stories are not those which rely on gore or sensationalism, but those which awaken a sense of cosmic insignificance and the realization of forces beyond mortal control. Such tales reach the reader’s mind as much by suggestion as by explicit description, leaving spaces in the narrative for the imagination to roam and encounter the unimaginable.
       </p>
     `
   }
